@@ -1,6 +1,11 @@
 import sys
 
 def main(n):
+  '''
+    Find the sum of all even fibonacci
+    numbers as long as they are below
+    the value of n.
+  '''
   total = 0
   i = 1
   while True:
@@ -13,6 +18,11 @@ def main(n):
   print total
 
 def fib(x):
+  '''
+    Produce the xth fibonacci number.
+    Assumes starting the sequence 
+    with 1,2 instead of 1,1.
+  '''
   if x == 1:
     return 1
   if x == 2:

@@ -1,24 +1,31 @@
 import sys
 import math
 
-def main(n):
-  total = 0
-  max = -1
-  for i in range(int(math.sqrt(n)), 2, -1):
-    if n % i == 0 and isPrime(i):
-      max = i
+def main():
+  '''
+    Find the greatest 6 digit palindromic
+    number that is a product of two three
+    digit numbers.
+  '''
+  for i in range(999,99,-1):
+    temp = str(i)
+    pal = int(temp + temp[::-1])
+    if threeDigDiv(pal):
+      print pal
       break
-  print max
 
-def isPrime(x):
-  for i in range(2, x//2):
-    if x % i == 0:
-      return False
-  return True
+def threeDigDiv(x):
+  '''
+    Iterates and finds if a given x is
+    divisible by three digit numbers.
+  '''
+  val = int(math.sqrt(x))
+  for i in range(val, 100, -1):
+    if (x % i == 0) and (999 >= x // i >= 100):
+      print x, i, x//i
+      return True
+  return False
 
 if __name__ == '__main__':
-  n = 600851475143
-  if len(sys.argv) == 2:
-    n = int(sys.argv[1])
-  main(n)
+  main()
 
