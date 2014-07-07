@@ -18,7 +18,9 @@ def isPrime(x):
     Iterates looking for any factors.
     If found, returns false.
   '''
-  for i in range(2, x//2):
+  if x in (2,3):
+    return True
+  for i in range(2, x//2+1):
     if x % i == 0:
       return False
   return True
