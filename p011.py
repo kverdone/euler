@@ -3,8 +3,10 @@ import math
 
 def main(n):
   '''
-    Find the largest prime factor
-    of a given number n.
+    Find the largest product of n 
+    consecutive numbers in the given
+    matrix horizontally, vertically,
+    and diagonally.
   '''
 
   grid = '''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -36,9 +38,55 @@ def main(n):
       arr[i].append(int(val))
     i += 1
 
-  print arr
-  print
-  print arr[1]
+  rows = len(arr) - n
+  cols = len(arr[0]) - n
+
+  max = -1
+  maxLoc = ()
+
+  # Horizontal
+  for i in range(0, rows):
+    for j in range(0, cols):
+      prod = 1
+      for k in arr[i][j:j+n]:
+        prod *= k
+      if prod > max:
+        max = prod
+        maxLoc = (i,j)
+
+  # Vertical
+  for j in range(0, cols):
+    for i in range(0, rows):
+      prod = 1
+      for k in range(0,n):
+        prod *= arr[i+k][j]
+      if prod > max:
+        max = prod
+        maxLoc = (i,j)
+
+  # Diags
+  for i in range(0, rows):
+    for j in range(0, len(arr[0])):
+      if j - (n - 1) >= 0:
+        prod = 1
+        for k in range(0,n):
+          prod *= arr[i+k][j-k]
+        if prod > max:
+          max = prod
+          maxLoc = (i,j)
+      if j + (n - 1) < len(arr):
+        prod = 1
+        for k in range(0,n):
+          prod *= arr[i+k][j+k]
+        if prod > max:
+          max = prod
+          maxLoc = (i,j)
+
+  print max
+  print maxLoc
+
+
+
 
 if __name__ == '__main__':
   n = 4
